@@ -14,7 +14,8 @@ import {
 } from 'lucide-react';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
-import { hymns, Language, languages, getHymnTitle, getHymnLyrics } from '@/data/hymns';
+import { AudioPlayer } from '@/components/AudioPlayer';
+import { hymns, Language, languages, getHymnTitle, getHymnLyrics, getHymnAudio } from '@/data/hymns';
 import { useApp } from '@/context/AppContext';
 import { toast } from 'sonner';
 
@@ -33,6 +34,7 @@ export default function HymnDetail() {
 
   const title = useMemo(() => hymn ? getHymnTitle(hymn, language) : '', [hymn, language]);
   const lyrics = useMemo(() => hymn ? getHymnLyrics(hymn, language) : null, [hymn, language]);
+  const audioUrl = useMemo(() => hymn ? getHymnAudio(hymn.id) : undefined, [hymn]);
 
   if (!hymn) {
     return (
@@ -145,6 +147,11 @@ export default function HymnDetail() {
             </p>
           </div>
         </motion.div>
+
+        {/* Audio Player */}
+        <div className="mx-4 mb-4">
+          <AudioPlayer audioUrl={audioUrl} hymnTitle={title} />
+        </div>
 
         {/* Language badge */}
         <div className="px-4 mb-4">

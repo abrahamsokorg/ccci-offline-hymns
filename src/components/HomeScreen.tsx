@@ -9,9 +9,11 @@ import {
   Settings, 
   Info,
   Music,
-  Cross
+  Cross,
+  Download
 } from 'lucide-react';
 import { FeatureCard } from '@/components/FeatureCard';
+import { InstallButton } from '@/components/InstallButton';
 
 const features = [
   {
@@ -137,6 +139,16 @@ export function HomeScreen() {
           </div>
         </motion.div>
       </div>
+
+      {/* Install Button */}
+      <motion.div
+        className="px-4 pb-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+      >
+        <InstallButton />
+      </motion.div>
 
       {/* Footer */}
       <motion.div
