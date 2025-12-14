@@ -9,6 +9,7 @@ export interface Hymn {
   authorId: number;
   bibleVerse: string;
   categoryIds: number[];
+  audioFile?: string; // Local audio file path
   lyrics: {
     verses: string[];
     chorus?: string;
@@ -110,6 +111,41 @@ export const authors: Author[] = [
     shortBio: "Bishop and hymn writer known for the Doxology",
     bio: "Thomas Ken (1637-1711) was an English clergyman who was considered the most eminent of the English non-juring bishops. He is best known for his morning, evening, and midnight hymns, particularly the famous Doxology 'Praise God from whom all blessings flow'.",
     bibleVerse: "Praise ye the LORD. Praise God in his sanctuary: praise him in the firmament of his power. - Psalm 150:1",
+  },
+  {
+    id: 6,
+    name: "Reginald Heber",
+    shortBio: "Bishop of Calcutta and hymn writer",
+    bio: "Reginald Heber (1783-1826) was an English bishop, traveler, and hymn writer. He served as the Bishop of Calcutta and is remembered for his missionary work and the beautiful hymns he composed, including 'Holy, Holy, Holy'.",
+    bibleVerse: "Holy, holy, holy, is the LORD of hosts: the whole earth is full of his glory. - Isaiah 6:3",
+  },
+  {
+    id: 7,
+    name: "Carl Boberg",
+    shortBio: "Swedish poet and editor",
+    bio: "Carl Gustav Boberg (1859-1940) was a Swedish poet and member of the Swedish parliament. He is best known for writing the poem 'O Store Gud' (O Great God) in 1885, which later became the beloved hymn 'How Great Thou Art' after being translated into English.",
+    bibleVerse: "The heavens declare the glory of God; and the firmament sheweth his handywork. - Psalm 19:1",
+  },
+  {
+    id: 8,
+    name: "Joseph Scriven",
+    shortBio: "Irish-Canadian hymn writer",
+    bio: "Joseph Medlicott Scriven (1819-1886) was an Irish-Canadian poet and hymn writer. He wrote the poem 'What a Friend We Have in Jesus' to comfort his mother in Ireland while he was living in Canada. The poem was later set to music and became one of the most beloved hymns worldwide.",
+    bibleVerse: "Casting all your care upon him; for he careth for you. - 1 Peter 5:7",
+  },
+  {
+    id: 9,
+    name: "Augustus Toplady",
+    shortBio: "Anglican clergyman and hymn writer",
+    bio: "Augustus Montague Toplady (1740-1778) was an Anglican clergyman and hymn writer. He is best known for writing the hymn 'Rock of Ages', which remains one of the most popular hymns in the English language.",
+    bibleVerse: "The Lord is my rock, and my fortress, and my deliverer. - 2 Samuel 22:2",
+  },
+  {
+    id: 10,
+    name: "Edward Perronet",
+    shortBio: "English evangelist and hymn writer",
+    bio: "Edward Perronet (1726-1792) was an English evangelist and hymn writer who worked closely with the Wesley brothers. He is best known for writing 'All Hail the Power of Jesus' Name', often called the 'coronation hymn'.",
+    bibleVerse: "That at the name of Jesus every knee should bow. - Philippians 2:10",
   },
 ];
 
@@ -378,7 +414,9 @@ export const hymns: Hymn[] = [
         lyrics: {
           verses: [
             "Oore ọ̀fẹ́ ìyanu! bí ó ti dùn tó,\nTí ó gbà ẹ̀dá burúkú bí emi là!\nMo ti ṣáko tẹ́lẹ̀, ṣùgbọ́n a ti rí mi báyìí,\nMo fọ́jú, ṣùgbọ́n mo rí báyìí.",
-            "Oore ọ̀fẹ́ ni ó kọ́ ọkàn mi láti bẹ̀rù,\nOore ọ̀fẹ́ sì tú ìbẹ̀rù mi sílẹ̀;\nBawo ni oore ọ̀fẹ́ yẹn ṣe wúlò tó\nWákàtí tí mo ti gbàgbọ́ ní àkọ́kọ́!",
+            "'Twas grace that taught my heart to fear,\nOore ọ̀fẹ́ sì tú ìbẹ̀rù mi sílẹ̀;\nBawo ni oore ọ̀fẹ́ yẹn ṣe wúlò tó\nWákàtí tí mo ti gbàgbọ́ ní àkọ́kọ́!",
+            "Láti ọ̀pọ̀lọpọ̀ ewu, iṣẹ́, àti ìdẹ̀kùn,\nMo ti dé báyìí;\nOore ọ̀fẹ́ ni ó mú mi wá títí di isisiyi,\nOore ọ̀fẹ́ yóò sì darí mi lọ sílé.",
+            "Nígbà tí a bá ti wà níbẹ̀ fún ẹgbẹ̀rún ọdún mẹ́wàá,\nTí a ń tàn gẹ́gẹ́ bí oòrùn,\nA kò ní ọjọ́ díẹ̀ láti yin Ọlọ́run\nJù bí a ti bẹ̀rẹ̀ ní àkọ́kọ́ lọ.",
           ],
         },
       },
@@ -388,6 +426,8 @@ export const hymns: Hymn[] = [
           verses: [
             "Grâce infinie! quel doux son,\nQui a sauvé un misérable comme moi!\nJ'étais perdu, mais maintenant je suis trouvé,\nJ'étais aveugle, mais maintenant je vois.",
             "C'est la grâce qui a enseigné à mon cœur à craindre,\nEt la grâce a soulagé mes peurs;\nCombien précieuse cette grâce apparut\nL'heure où j'ai cru pour la première fois!",
+            "À travers de nombreux dangers, labeurs et pièges,\nJe suis déjà venu;\nC'est la grâce qui m'a amené sain et sauf jusqu'ici,\nEt la grâce me conduira à la maison.",
+            "Quand nous aurons été là dix mille ans,\nBrillant comme le soleil,\nNous n'aurons pas moins de jours pour louer Dieu\nQue lorsque nous avons commencé.",
           ],
         },
       },
@@ -397,6 +437,298 @@ export const hymns: Hymn[] = [
           verses: [
             "¡Sublime gracia! qué dulce el sonido,\n¡Que salvó a un miserable como yo!\nUna vez estuve perdido, pero ahora soy hallado,\nEstuve ciego, pero ahora veo.",
             "Fue la gracia que enseñó a mi corazón a temer,\nY la gracia mis temores alivió;\nCuán preciosa esa gracia apareció\n¡La hora en que por primera vez creí!",
+            "A través de muchos peligros, trabajos y trampas,\nYa he venido;\nLa gracia me ha traído seguro hasta aquí,\nY la gracia me llevará a casa.",
+            "Cuando hayamos estado allí diez mil años,\nBrillando como el sol,\nNo tendremos menos días para alabar a Dios\nQue cuando empezamos por primera vez.",
+          ],
+        },
+      },
+    },
+  },
+  {
+    id: 7,
+    index: "007",
+    title: "Holy, Holy, Holy! Lord God Almighty",
+    meter: "11.12.12.10",
+    author: "Reginald Heber",
+    authorId: 6,
+    bibleVerse: "Holy, holy, holy, is the LORD of hosts: the whole earth is full of his glory. - Isaiah 6:3",
+    categoryIds: [20, 24],
+    lyrics: {
+      verses: [
+        "Holy, holy, holy! Lord God Almighty!\nEarly in the morning our song shall rise to Thee;\nHoly, holy, holy, merciful and mighty!\nGod in three Persons, blessèd Trinity!",
+        "Holy, holy, holy! All the saints adore Thee,\nCasting down their golden crowns around the glassy sea;\nCherubim and seraphim falling down before Thee,\nWho wert, and art, and evermore shall be.",
+        "Holy, holy, holy! Though the darkness hide Thee,\nThough the eye of sinful man Thy glory may not see,\nOnly Thou art holy; there is none beside Thee,\nPerfect in power, in love, and purity.",
+        "Holy, holy, holy! Lord God Almighty!\nAll Thy works shall praise Thy Name, in earth and sky and sea;\nHoly, holy, holy; merciful and mighty!\nGod in three Persons, blessèd Trinity!",
+      ],
+    },
+    translations: {
+      Yoruba: {
+        title: "Mímọ́, Mímọ́, Mímọ́! Olúwa Ọlọ́run Alágbára",
+        lyrics: {
+          verses: [
+            "Mímọ́, mímọ́, mímọ́! Olúwa Ọlọ́run Alágbára!\nNí kùtùkùtù òwúrọ̀ orin wa yóò gòkè sí Ọ;\nMímọ́, mímọ́, mímọ́, àánú àti alágbára!\nỌlọ́run nínú Ẹni mẹ́ta, Mẹ́talọ́kan àlàáfíà!",
+            "Mímọ́, mímọ́, mímọ́! Gbogbo àwọn ènìyàn mímọ́ ń jọ́sìn Rẹ,\nWọ́n ń ju adé wúrà wọn sílẹ̀ yí okun gíláàsì ká;\nKérúbù àti séráfù ń wólẹ̀ níwájú Rẹ,\nẸni tí ó wà, tí ó sì wà, tí yóò sì wà láéláé.",
+          ],
+        },
+      },
+      French: {
+        title: "Saint, Saint, Saint! Seigneur Dieu Tout-Puissant",
+        lyrics: {
+          verses: [
+            "Saint, saint, saint! Seigneur Dieu Tout-Puissant!\nTôt le matin notre chant s'élèvera vers Toi;\nSaint, saint, saint, miséricordieux et puissant!\nDieu en trois Personnes, bienheureuse Trinité!",
+            "Saint, saint, saint! Tous les saints T'adorent,\nJetant leurs couronnes d'or autour de la mer de cristal;\nChérubins et séraphins se prosternant devant Toi,\nQui étais, et es, et seras à jamais.",
+          ],
+        },
+      },
+      Spanish: {
+        title: "¡Santo, Santo, Santo! Señor Omnipotente",
+        lyrics: {
+          verses: [
+            "¡Santo, santo, santo! ¡Señor omnipotente!\nTemprano en la mañana nuestro canto se elevará a Ti;\n¡Santo, santo, santo, misericordioso y poderoso!\n¡Dios en tres Personas, bendita Trinidad!",
+            "¡Santo, santo, santo! Todos los santos te adoran,\nEchando sus coronas de oro alrededor del mar de cristal;\nQuerubines y serafines cayendo ante Ti,\nQue eras, y eres, y siempre serás.",
+          ],
+        },
+      },
+    },
+  },
+  {
+    id: 8,
+    index: "008",
+    title: "How Great Thou Art",
+    meter: "11.10.11.10",
+    author: "Carl Boberg",
+    authorId: 7,
+    bibleVerse: "O LORD my God, thou art very great; thou art clothed with honour and majesty. - Psalm 104:1",
+    categoryIds: [20, 24],
+    lyrics: {
+      verses: [
+        "O Lord my God, when I in awesome wonder\nConsider all the works Thy hands have made,\nI see the stars, I hear the rolling thunder,\nThy power throughout the universe displayed.",
+        "When through the woods and forest glades I wander\nAnd hear the birds sing sweetly in the trees,\nWhen I look down from lofty mountain grandeur,\nAnd hear the brook and feel the gentle breeze.",
+        "And when I think that God, His Son not sparing,\nSent Him to die, I scarce can take it in,\nThat on the cross, my burden gladly bearing,\nHe bled and died to take away my sin.",
+        "When Christ shall come with shout of acclamation\nAnd take me home, what joy shall fill my heart!\nThen I shall bow in humble adoration\nAnd there proclaim, my God, how great Thou art!",
+      ],
+      chorus: "Then sings my soul, my Savior God, to Thee:\nHow great Thou art! How great Thou art!\nThen sings my soul, my Savior God, to Thee:\nHow great Thou art! How great Thou art!",
+    },
+    translations: {
+      Yoruba: {
+        title: "Bí O Ṣe Tóbi Tó",
+        lyrics: {
+          verses: [
+            "Olúwa Ọlọ́run mi, nígbà tí mo bá ronú ìyanu\nMo ro gbogbo iṣẹ́ tí ọwọ́ Rẹ ṣe,\nMo rí àwọn ìràwọ̀, mo gbọ́ àrá tí ó ń yí,\nAgbára Rẹ ní àgbáálá ayé hàn.",
+            "Nígbà tí mo rin kọjá igbó àti àfonífojì,\nTí mo sì gbọ́ àwọn ẹyẹ ń kọrin ní àwọn igi,\nNígbà tí mo wo lulẹ̀ láti òkè gíga,\nTí mo sì gbọ́ odò tí mo sì ní àfẹ́fẹ́ tútù.",
+          ],
+          chorus: "Lẹ́yìn náà ọkàn mi kọrin, Olùgbàlà Ọlọ́run mi, sí Ọ:\nBí o ṣe tóbi tó! Bí o ṣe tóbi tó!\nLẹ́yìn náà ọkàn mi kọrin, Olùgbàlà Ọlọ́run mi, sí Ọ:\nBí o ṣe tóbi tó! Bí o ṣe tóbi tó!",
+        },
+      },
+      French: {
+        title: "Que Tu Es Grand",
+        lyrics: {
+          verses: [
+            "Seigneur mon Dieu, quand je contemple avec émerveillement\nToutes les œuvres que tes mains ont faites,\nJe vois les étoiles, j'entends le tonnerre gronder,\nTa puissance se déploie dans tout l'univers.",
+            "Quand je me promène dans les bois et les clairières\nEt que j'entends les oiseaux chanter doucement dans les arbres,\nQuand je regarde d'en haut la grandeur majestueuse,\nEt que j'entends le ruisseau et sens la douce brise.",
+          ],
+          chorus: "Alors mon âme chante, mon Sauveur Dieu, à Toi:\nQue tu es grand! Que tu es grand!\nAlors mon âme chante, mon Sauveur Dieu, à Toi:\nQue tu es grand! Que tu es grand!",
+        },
+      },
+      Spanish: {
+        title: "Cuán Grande Es Él",
+        lyrics: {
+          verses: [
+            "Señor mi Dios, al contemplar los cielos,\nEl firmamento y las estrellas mil,\nAl oír tu voz en los potentes truenos\nY ver brillar el sol en su cenit.",
+            "Al recorrer los montes y los valles\nY ver las bellas flores al pasar,\nAl escuchar el canto de las aves\nY el murmurar del claro manantial.",
+          ],
+          chorus: "Mi corazón entona la canción:\n¡Cuán grande es Él! ¡Cuán grande es Él!\nMi corazón entona la canción:\n¡Cuán grande es Él! ¡Cuán grande es Él!",
+        },
+      },
+    },
+  },
+  {
+    id: 9,
+    index: "009",
+    title: "What a Friend We Have in Jesus",
+    meter: "8.7.8.7 D",
+    author: "Joseph Scriven",
+    authorId: 8,
+    bibleVerse: "Greater love hath no man than this, that a man lay down his life for his friends. - John 15:13",
+    categoryIds: [1, 11, 24],
+    lyrics: {
+      verses: [
+        "What a Friend we have in Jesus,\nAll our sins and griefs to bear!\nWhat a privilege to carry\nEverything to God in prayer!",
+        "Have we trials and temptations?\nIs there trouble anywhere?\nWe should never be discouraged,\nTake it to the Lord in prayer.",
+        "Are we weak and heavy laden,\nCumbered with a load of care?\nPrecious Savior, still our refuge,\nTake it to the Lord in prayer.",
+      ],
+      chorus: "O what peace we often forfeit,\nO what needless pain we bear,\nAll because we do not carry\nEverything to God in prayer!",
+    },
+    translations: {
+      Yoruba: {
+        title: "Ọ̀rẹ́ Wo Ni A Ní Nínú Jésù",
+        lyrics: {
+          verses: [
+            "Ọ̀rẹ́ wo ni a ní nínú Jésù,\nLáti ru gbogbo ẹ̀ṣẹ̀ àti ìbànújẹ́ wa!\nÀǹfààní wo ni láti gbé\nGbogbo nǹkan lọ sí Ọlọ́run nínú àdúrà!",
+            "Ṣé a ní ìdánwò àti àdánwò?\nṢé wàhálà wà níbikíbi?\nA kò gbọdọ̀ rẹ̀wẹ̀sì rárá,\nGbé e lọ sí Olúwa nínú àdúrà.",
+          ],
+          chorus: "Ó, àlàáfíà wo ni a máa pàdánù,\nÓ, ìrora aláìní wo ni a máa ru,\nGbogbo nítorí pé a kò gbé\nGbogbo nǹkan lọ sí Ọlọ́run nínú àdúrà!",
+        },
+      },
+      French: {
+        title: "Quel Ami Nous Avons en Jésus",
+        lyrics: {
+          verses: [
+            "Quel ami nous avons en Jésus,\nIl porte tous nos péchés et nos chagrins!\nQuel privilège de porter\nTout à Dieu dans la prière!",
+            "Avons-nous des épreuves et des tentations?\nY a-t-il des problèmes quelque part?\nNous ne devrions jamais nous décourager,\nPorte-le au Seigneur dans la prière.",
+          ],
+          chorus: "Oh quelle paix nous perdons souvent,\nOh quelle douleur inutile nous portons,\nTout parce que nous ne portons pas\nTout à Dieu dans la prière!",
+        },
+      },
+      Spanish: {
+        title: "¡Oh, Qué Amigo Nos Es Cristo!",
+        lyrics: {
+          verses: [
+            "¡Oh, qué amigo nos es Cristo!\nÉl llevó nuestro dolor,\nY nos manda que llevemos\nTodo a Dios en oración.",
+            "¿Tienes pruebas y tentaciones?\n¿Hay angustias en tu ser?\nNo te rindas, ven a Cristo,\nÉl tu amigo siempre es.",
+          ],
+          chorus: "¡Oh, qué paz perdemos muchas veces!\n¡Oh, qué dolor innecesario!\nTodo porque no llevamos\nTodo a Dios en oración.",
+        },
+      },
+    },
+  },
+  {
+    id: 10,
+    index: "010",
+    title: "Rock of Ages, Cleft for Me",
+    meter: "7.7.7.7.7.7",
+    author: "Augustus Toplady",
+    authorId: 9,
+    bibleVerse: "And did all drink the same spiritual drink: for they drank of that spiritual Rock that followed them: and that Rock was Christ. - 1 Corinthians 10:4",
+    categoryIds: [11, 20, 22],
+    lyrics: {
+      verses: [
+        "Rock of Ages, cleft for me,\nLet me hide myself in Thee;\nLet the water and the blood,\nFrom Thy wounded side which flowed,\nBe of sin the double cure;\nSave from wrath and make me pure.",
+        "Not the labors of my hands\nCan fulfill Thy law's demands;\nCould my zeal no respite know,\nCould my tears forever flow,\nAll for sin could not atone;\nThou must save, and Thou alone.",
+        "Nothing in my hand I bring,\nSimply to the cross I cling;\nNaked, come to Thee for dress;\nHelpless, look to Thee for grace;\nFoul, I to the fountain fly;\nWash me, Savior, or I die.",
+        "While I draw this fleeting breath,\nWhen mine eyes shall close in death,\nWhen I soar to worlds unknown,\nSee Thee on Thy judgment throne,\nRock of Ages, cleft for me,\nLet me hide myself in Thee.",
+      ],
+    },
+    translations: {
+      Yoruba: {
+        title: "Àpáta Ayérayé, Tí A Pín Fún Mi",
+        lyrics: {
+          verses: [
+            "Àpáta ayérayé, tí a pín fún mi,\nJẹ́ kí n fi ara mi pamọ́ sínú Rẹ;\nJẹ́ kí omi àti ẹ̀jẹ̀,\nLáti ẹ̀gbẹ́ Rẹ tí a fara pa tí ó ṣàn,\nJẹ́ ìwòsàn ìlọ́po méjì ẹ̀ṣẹ̀;\nGbà kúrò nínú ìbínú kí o sì mú mi mọ́.",
+            "Kì í ṣe iṣẹ́ ọwọ́ mi\nLè mú ìbéèrè òfin Rẹ ṣẹ;\nBí ìtara mi kò bá mọ ìsinmi,\nBí omijé mi bá ṣàn láéláé,\nGbogbo fún ẹ̀ṣẹ̀ kò lè túbọ̀;\nÌwọ gbọdọ̀ gbà, àti Ìwọ nìkan.",
+          ],
+        },
+      },
+      French: {
+        title: "Rocher des Siècles, Fendu pour Moi",
+        lyrics: {
+          verses: [
+            "Rocher des siècles, fendu pour moi,\nLaisse-moi me cacher en toi;\nQue l'eau et le sang,\nDe ton côté blessé qui coula,\nSoient du péché la double guérison;\nSauve de la colère et rends-moi pur.",
+            "Les travaux de mes mains\nNe peuvent accomplir les demandes de ta loi;\nMon zèle ne connaissant pas de répit,\nMes larmes coulant à jamais,\nTout pour le péché ne pourrait expier;\nTu dois sauver, et toi seul.",
+          ],
+        },
+      },
+      Spanish: {
+        title: "Roca de la Eternidad",
+        lyrics: {
+          verses: [
+            "Roca de la eternidad, hendida por mí,\nDéjame esconderme en ti;\nQue el agua y la sangre,\nDe tu costado herido que fluyó,\nSean del pecado la doble cura;\nSálvame de la ira y hazme puro.",
+            "No los trabajos de mis manos\nPueden cumplir las demandas de tu ley;\nAunque mi celo no conociera descanso,\nAunque mis lágrimas fluyeran por siempre,\nTodo por el pecado no podría expiar;\nTú debes salvar, y tú solo.",
+          ],
+        },
+      },
+    },
+  },
+  {
+    id: 11,
+    index: "011",
+    title: "O God, Our Help in Ages Past",
+    meter: "CM",
+    author: "Isaac Watts",
+    authorId: 4,
+    bibleVerse: "Lord, thou hast been our dwelling place in all generations. - Psalm 90:1",
+    categoryIds: [18, 20, 24],
+    lyrics: {
+      verses: [
+        "O God, our help in ages past,\nOur hope for years to come,\nOur shelter from the stormy blast,\nAnd our eternal home.",
+        "Under the shadow of Thy throne\nStill may we dwell secure;\nSufficient is Thine arm alone,\nAnd our defense is sure.",
+        "Before the hills in order stood,\nOr earth received her frame,\nFrom everlasting Thou art God,\nTo endless years the same.",
+        "A thousand ages in Thy sight\nAre like an evening gone;\nShort as the watch that ends the night,\nBefore the rising sun.",
+        "O God, our help in ages past,\nOur hope for years to come;\nBe Thou our guide while life shall last,\nAnd our eternal home.",
+      ],
+    },
+    translations: {
+      Yoruba: {
+        title: "Ọlọ́run, Ìrànlọ́wọ́ Wa Ní Ìgbà Àtijọ́",
+        lyrics: {
+          verses: [
+            "Ọlọ́run, ìrànlọ́wọ́ wa ní ìgbà àtijọ́,\nÌrètí wa fún ọdún tí ó ń bọ̀,\nÀbò wa kúrò nínú ìjì líle,\nÀti ilé ayérayé wa.",
+            "Lábẹ́ ojìji ìtẹ́ Rẹ\nA tún lè gbé ní ààbò;\nApá Rẹ nìkan tó,\nÀbò wa sì dájú.",
+          ],
+        },
+      },
+      French: {
+        title: "Ô Dieu, Notre Aide Dans Les Temps Passés",
+        lyrics: {
+          verses: [
+            "Ô Dieu, notre aide dans les temps passés,\nNotre espoir pour les années à venir,\nNotre abri contre la tempête,\nEt notre demeure éternelle.",
+            "Sous l'ombre de ton trône\nPuissions-nous encore demeurer en sécurité;\nTon bras seul suffit,\nEt notre défense est sûre.",
+          ],
+        },
+      },
+      Spanish: {
+        title: "Oh Dios, Nuestra Ayuda en Tiempos Pasados",
+        lyrics: {
+          verses: [
+            "Oh Dios, nuestra ayuda en tiempos pasados,\nNuestra esperanza para años por venir,\nNuestro refugio de la tormenta,\nY nuestro hogar eterno.",
+            "Bajo la sombra de tu trono\nAún podemos morar seguros;\nSuficiente es tu brazo solo,\nY nuestra defensa es segura.",
+          ],
+        },
+      },
+    },
+  },
+  {
+    id: 12,
+    index: "012",
+    title: "All Hail the Power of Jesus' Name",
+    meter: "CM",
+    author: "Edward Perronet",
+    authorId: 10,
+    bibleVerse: "Wherefore God also hath highly exalted him, and given him a name which is above every name. - Philippians 2:9",
+    categoryIds: [4, 20, 24],
+    lyrics: {
+      verses: [
+        "All hail the power of Jesus' Name!\nLet angels prostrate fall;\nBring forth the royal diadem,\nAnd crown Him Lord of all.",
+        "Ye chosen seed of Israel's race,\nYe ransomed from the fall,\nHail Him who saves you by His grace,\nAnd crown Him Lord of all.",
+        "Let every kindred, every tribe,\nOn this terrestrial ball,\nTo Him all majesty ascribe,\nAnd crown Him Lord of all.",
+        "O that with yonder sacred throng\nWe at His feet may fall!\nWe'll join the everlasting song,\nAnd crown Him Lord of all.",
+      ],
+    },
+    translations: {
+      Yoruba: {
+        title: "Ẹ Kí Agbára Orúkọ Jésù",
+        lyrics: {
+          verses: [
+            "Ẹ kí agbára orúkọ Jésù!\nJẹ́ kí àwọn àńgẹ́lì wọlẹ̀;\nMú adé ọba jáde,\nKí ẹ sì fi adé rẹ̀ ṣe Olúwa gbogbo.",
+            "Ẹ̀yin tí a yàn láti ìran Ísírẹ́lì,\nẸ̀yin tí a rà padà láti ìṣubú,\nẸ kí Ẹni tí ó gbà yín nípasẹ̀ oore ọ̀fẹ́ Rẹ̀,\nKí ẹ sì fi adé rẹ̀ ṣe Olúwa gbogbo.",
+          ],
+        },
+      },
+      French: {
+        title: "Gloire à la Puissance du Nom de Jésus",
+        lyrics: {
+          verses: [
+            "Gloire à la puissance du nom de Jésus!\nQue les anges se prosternent;\nApportez le diadème royal,\nEt couronnez-le Seigneur de tout.",
+            "Vous, semence choisie de la race d'Israël,\nVous, rachetés de la chute,\nSaluez Celui qui vous sauve par sa grâce,\nEt couronnez-le Seigneur de tout.",
+          ],
+        },
+      },
+      Spanish: {
+        title: "¡Salve el Poder del Nombre de Jesús!",
+        lyrics: {
+          verses: [
+            "¡Salve el poder del nombre de Jesús!\nQue los ángeles se postren;\nTraigan la diadema real,\nY coronen a Él Señor de todo.",
+            "Vosotros, simiente escogida de Israel,\nVosotros, rescatados de la caída,\nSaludad al que os salva por su gracia,\nY coronadle Señor de todo.",
           ],
         },
       },
@@ -443,4 +775,13 @@ export const getHymnTitle = (hymn: Hymn, language: Language): string => {
 export const getHymnLyrics = (hymn: Hymn, language: Language) => {
   if (language === 'English') return hymn.lyrics;
   return hymn.translations[language]?.lyrics || hymn.lyrics;
+};
+
+// Get audio URL for a hymn (placeholder - audio files would be in public/audio/)
+export const getHymnAudio = (hymnId: number): string | undefined => {
+  const hymn = hymns.find(h => h.id === hymnId);
+  if (hymn?.audioFile) {
+    return `/audio/${hymn.audioFile}`;
+  }
+  return undefined;
 };

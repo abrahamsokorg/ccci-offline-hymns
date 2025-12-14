@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { Layout } from '@/components/Layout';
 import { useApp } from '@/context/AppContext';
-import { Settings as SettingsIcon, Globe, Type, Moon, Sun } from 'lucide-react';
+import { Settings as SettingsIcon, Globe, Type, Moon, Sun, Download } from 'lucide-react';
 import { languages, Language } from '@/data/hymns';
+import { InstallButton } from '@/components/InstallButton';
 
 export default function Settings() {
   const { settings, updateSettings } = useApp();
@@ -64,6 +65,18 @@ export default function Settings() {
               </button>
             ))}
           </div>
+        </motion.div>
+
+        {/* Install App */}
+        <motion.div className="bg-card rounded-xl border border-border p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+          <div className="flex items-center gap-3 mb-3">
+            <Download className="w-5 h-5 text-gold" />
+            <h3 className="font-semibold text-foreground">Install App</h3>
+          </div>
+          <p className="text-muted-foreground text-sm mb-3">
+            Install the CCCI Hymnal on your device for quick access and offline use.
+          </p>
+          <InstallButton />
         </motion.div>
       </div>
     </Layout>
