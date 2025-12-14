@@ -20,6 +20,7 @@ import Gospel from '@/pages/Gospel';
 import Settings from '@/pages/Settings';
 import About from '@/pages/About';
 import Share from '@/pages/Share';
+import Install from '@/pages/Install';
 import NotFound from '@/pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/settings" element={<Settings />} />
               <Route path="/about" element={<About />} />
               <Route path="/share" element={<Share />} />
+              <Route path="/install" element={<Install />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
