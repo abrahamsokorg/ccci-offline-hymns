@@ -33,30 +33,32 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <AnimatePresence mode="wait">
-            {showSplash ? (
-              <SplashScreen key="splash" onComplete={() => setShowSplash(false)} />
-            ) : (
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<HomeScreen />} />
-                  <Route path="/languages" element={<Languages />} />
-                  <Route path="/hymns" element={<HymnList />} />
-                  <Route path="/hymn/:id" element={<HymnDetail />} />
-                  <Route path="/authors" element={<Authors />} />
-                  <Route path="/author/:id" element={<AuthorDetail />} />
-                  <Route path="/categories" element={<Categories />} />
-                  <Route path="/category/:id" element={<CategoryDetail />} />
-                  <Route path="/favorites" element={<Favorites />} />
-                  <Route path="/gospel" element={<Gospel />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/share" element={<Share />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-            )}
-          </AnimatePresence>
+          <BrowserRouter>
+            {/* Splash screen as overlay */}
+            <AnimatePresence>
+              {showSplash && (
+                <SplashScreen key="splash" onComplete={() => setShowSplash(false)} />
+              )}
+            </AnimatePresence>
+            
+            {/* Main app routes - always mounted */}
+            <Routes>
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/languages" element={<Languages />} />
+              <Route path="/hymns" element={<HymnList />} />
+              <Route path="/hymn/:id" element={<HymnDetail />} />
+              <Route path="/authors" element={<Authors />} />
+              <Route path="/author/:id" element={<AuthorDetail />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/category/:id" element={<CategoryDetail />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/gospel" element={<Gospel />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/share" element={<Share />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
         </TooltipProvider>
       </AppProvider>
     </QueryClientProvider>
