@@ -1,46 +1,13 @@
 // Offline hymn database - all data bundled with the app
+import { hymnsBatch1 } from './hymns-batch-1';
+import { hymnsBatch2 } from './hymns-batch-2';
+import { hymnsBatch3 } from './hymns-batch-3';
+import { hymnsBatch4 } from './hymns-batch-4';
+import { hymnsBatch5 } from './hymns-batch-5';
+import type { Hymn, Author, Category, Language } from './hymn-types';
 
-export interface Hymn {
-  id: number;
-  index: string;
-  title: string;
-  meter: string;
-  author: string;
-  authorId: number;
-  bibleVerse: string;
-  categoryIds: number[];
-  audioFile?: string; // Local audio file path
-  lyrics: {
-    verses: string[];
-    chorus?: string;
-  };
-  translations: {
-    [key: string]: {
-      title: string;
-      lyrics: {
-        verses: string[];
-        chorus?: string;
-      };
-    };
-  };
-}
-
-export interface Author {
-  id: number;
-  name: string;
-  bio: string;
-  shortBio: string;
-  bibleVerse: string;
-  imageUrl?: string;
-}
-
-export interface Category {
-  id: number;
-  name: string;
-  description: string;
-}
-
-export type Language = 'English' | 'Yoruba' | 'French' | 'Spanish';
+// Re-export types
+export type { Hymn, Author, Category, Language } from './hymn-types';
 
 export const languages: Language[] = ['English', 'Yoruba', 'French', 'Spanish'];
 
@@ -350,7 +317,7 @@ export const authors: Author[] = [
   { id: 270, name: "Dottie Rambo", shortBio: "American gospel songwriter", bio: "Dottie Rambo (1934-2008) was a gospel legend.", bibleVerse: "Holy ground. - Exodus 3:5" },
 ];
 
-export const hymns: Hymn[] = [
+const baseHymns: Hymn[] = [
   {
     id: 1,
     index: "001",
@@ -935,6 +902,16 @@ export const hymns: Hymn[] = [
       },
     },
   },
+];
+
+// Combine all hymns from batch files
+export const hymns: Hymn[] = [
+  ...baseHymns,
+  ...hymnsBatch1,
+  ...hymnsBatch2,
+  ...hymnsBatch3,
+  ...hymnsBatch4,
+  ...hymnsBatch5,
 ];
 
 // Helper functions
