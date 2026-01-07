@@ -1,39 +1,44 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((val: T) => T)) => void] {
+  // Use ref to avoid re-creating readValue when initialValue changes
+  const initialValueRef = useRef(initialValue);
+  
   // Get from local storage then parse stored json or return initialValue
   const readValue = useCallback((): T => {
     if (typeof window === 'undefined') {
-      return initialValue;
+      return initialValueRef.current;
     }
 
     try {
       const item = window.localStorage.getItem(key);
-      return item ? (JSON.parse(item) as T) : initialValue;
+      return item ? (JSON.parse(item) as T) : initialValueRef.current;
     } catch (error) {
       console.warn(`Error reading localStorage key "${key}":`, error);
-      return initialValue;
+      return initialValueRef.current;
     }
-  }, [initialValue, key]);
+  }, [key]);
 
-  const [storedValue, setStoredValue] = useState<T>(readValue);
+  const [storedValue, setStoredValue] = useState<T>(() => readValue());
 
-  const setValue = (value: T | ((val: T) => T)) => {
+  const setValue = useCallback((value: T | ((val: T) => T)) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      
-      if (typeof window !== 'undefined') {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      }
+      setStoredValue(prev => {
+        const valueToStore = value instanceof Function ? value(prev) : value;
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        }
+        return valueToStore;
+      });
     } catch (error) {
       console.warn(`Error setting localStorage key "${key}":`, error);
     }
-  };
+  }, [key]);
 
+  // Sync with localStorage on key change only
   useEffect(() => {
     setStoredValue(readValue());
-  }, [readValue]);
+  }, [key, readValue]);
 
   return [storedValue, setValue];
 }

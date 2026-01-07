@@ -1,5 +1,5 @@
 // Hymns 313-412 (100 hymns)
-import { Hymn } from './hymns';
+import { Hymn } from './hymn-types';
 
 const placeholderLyrics = {
   verses: ["[Verse 1 - Add your lyrics here]", "[Verse 2 - Add your lyrics here]", "[Verse 3 - Add your lyrics here]"],
