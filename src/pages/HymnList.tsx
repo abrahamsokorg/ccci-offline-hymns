@@ -9,12 +9,21 @@ import { Button } from '@/components/ui/button';
 
 const HYMNS_PER_PAGE = 20;
 
+const languageTitles: Record<Language, string> = {
+  English: 'Hymns',
+  Yoruba: 'Ìwé Orin',
+  French: 'Cantiques',
+  Spanish: 'Himnos',
+};
+
 export default function HymnList() {
   const [searchParams] = useSearchParams();
   const language = (searchParams.get('lang') as Language) || 'English';
   const [searchQuery, setSearchQuery] = useState('');
   const [searchByIndex, setSearchByIndex] = useState(false);
   const [visibleCount, setVisibleCount] = useState(HYMNS_PER_PAGE);
+  
+  const title = languageTitles[language] || language;
 
   const filteredHymns = useMemo(() => {
     if (!searchQuery) return hymns;
@@ -41,7 +50,7 @@ export default function HymnList() {
   };
 
   return (
-    <Layout title={language} showBack>
+    <Layout title={title} showBack>
       <div className="p-4">
         {/* Language badge */}
         <motion.div
