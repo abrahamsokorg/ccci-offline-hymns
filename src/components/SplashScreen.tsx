@@ -7,11 +7,13 @@ interface SplashScreenProps {
 }
 
 export function SplashScreen({ onComplete }: SplashScreenProps) {
-  // Trigger onComplete after 2.5 seconds
+  // Trigger onComplete after 2.5 seconds - use ref to ensure stable callback
   useEffect(() => {
-    const timer = setTimeout(onComplete, 2500);
+    const timer = setTimeout(() => {
+      onComplete();
+    }, 2500);
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, []); // Empty deps - only run once on mount
 
   return (
     <motion.div

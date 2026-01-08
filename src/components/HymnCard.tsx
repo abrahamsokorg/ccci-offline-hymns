@@ -20,9 +20,9 @@ export function HymnCard({ hymn, language, index }: HymnCardProps) {
     <motion.button
       className="w-full text-left p-4 bg-card border border-border rounded-lg hover:border-primary/30 hover:shadow-hymnal transition-all duration-200 group"
       onClick={() => navigate(`/hymn/${hymn.id}?lang=${language}`)}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.05, duration: 0.3 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
       whileHover={{ x: 4 }}
     >
       <div className="flex items-start gap-4">

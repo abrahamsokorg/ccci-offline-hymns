@@ -3,14 +3,18 @@ import { motion } from 'framer-motion';
 import { Layout } from '@/components/Layout';
 import { HymnCard } from '@/components/HymnCard';
 import { SearchBar } from '@/components/SearchBar';
-import { hymns, Language, searchHymns, getHymnTitle } from '@/data/hymns';
+import { hymns, Language, searchHymns } from '@/data/hymns';
 import { useSearchParams } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+
+const HYMNS_PER_PAGE = 20;
 
 export default function HymnList() {
   const [searchParams] = useSearchParams();
   const language = (searchParams.get('lang') as Language) || 'English';
   const [searchQuery, setSearchQuery] = useState('');
   const [searchByIndex, setSearchByIndex] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(HYMNS_PER_PAGE);
 
   const filteredHymns = useMemo(() => {
     if (!searchQuery) return hymns;
@@ -22,9 +26,18 @@ export default function HymnList() {
     return searchHymns(searchQuery, language);
   }, [searchQuery, searchByIndex, language]);
 
+  const visibleHymns = useMemo(() => {
+    return filteredHymns.slice(0, visibleCount);
+  }, [filteredHymns, visibleCount]);
+
   const handleSearch = (query: string, byIndex: boolean) => {
     setSearchQuery(query);
     setSearchByIndex(byIndex);
+    setVisibleCount(HYMNS_PER_PAGE); // Reset pagination on new search
+  };
+
+  const loadMore = () => {
+    setVisibleCount(prev => Math.min(prev + HYMNS_PER_PAGE, filteredHymns.length));
   };
 
   return (
@@ -58,7 +71,7 @@ export default function HymnList() {
 
         {/* Hymn list */}
         <div className="space-y-3">
-          {filteredHymns.map((hymn, index) => (
+          {visibleHymns.map((hymn, index) => (
             <HymnCard key={hymn.id} hymn={hymn} language={language} index={index} />
           ))}
           
@@ -69,6 +82,23 @@ export default function HymnList() {
               animate={{ opacity: 1 }}
             >
               <p className="text-muted-foreground">No hymns found</p>
+            </motion.div>
+          )}
+
+          {/* Load more button */}
+          {visibleCount < filteredHymns.length && (
+            <motion.div 
+              className="pt-4 pb-8 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Button 
+                onClick={loadMore} 
+                variant="outline"
+                className="w-full max-w-xs"
+              >
+                Load more ({filteredHymns.length - visibleCount} remaining)
+              </Button>
             </motion.div>
           )}
         </div>
