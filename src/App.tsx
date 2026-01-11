@@ -21,6 +21,7 @@ import Settings from '@/pages/Settings';
 import About from '@/pages/About';
 import Share from '@/pages/Share';
 import Install from '@/pages/Install';
+import Admin from '@/pages/Admin';
 import NotFound from '@/pages/NotFound';
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/share" element={<Share />} />
               <Route path="/install" element={<Install />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

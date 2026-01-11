@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { useApp } from '@/context/AppContext';
-import { Settings as SettingsIcon, Globe, Type, Moon, Sun, Download } from 'lucide-react';
+import { Settings as SettingsIcon, Globe, Type, Moon, Sun, Download, Edit } from 'lucide-react';
 import { languages, Language } from '@/data/hymns';
 import { InstallButton } from '@/components/InstallButton';
+import { Button } from '@/components/ui/button';
 
 export default function Settings() {
+  const navigate = useNavigate();
   const { settings, updateSettings } = useApp();
 
   return (
@@ -77,6 +80,21 @@ export default function Settings() {
             Install the CCCI Hymnal on your device for quick access and offline use.
           </p>
           <InstallButton />
+        </motion.div>
+
+        {/* Admin - Lyrics Management */}
+        <motion.div className="bg-card rounded-xl border border-border p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+          <div className="flex items-center gap-3 mb-3">
+            <Edit className="w-5 h-5 text-gold" />
+            <h3 className="font-semibold text-foreground">Lyrics Management</h3>
+          </div>
+          <p className="text-muted-foreground text-sm mb-3">
+            Add or edit hymn lyrics manually or import from CSV.
+          </p>
+          <Button variant="outline" onClick={() => navigate('/admin')} className="w-full gap-2">
+            <Edit className="w-4 h-4" />
+            Open Lyrics Admin
+          </Button>
         </motion.div>
       </div>
     </Layout>
