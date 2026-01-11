@@ -15,8 +15,9 @@ import {
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { AudioPlayer } from '@/components/AudioPlayer';
-import { hymns, Language, languages, getHymnTitle, getHymnLyrics, getHymnAudio } from '@/data/hymns';
+import { hymns, Language, languages, getHymnTitle, getHymnAudio } from '@/data/hymns';
 import { useApp } from '@/context/AppContext';
+import { useLyricsOverrides } from '@/hooks/useLyricsOverrides';
 import { toast } from 'sonner';
 
 export default function HymnDetail() {
@@ -24,6 +25,7 @@ export default function HymnDetail() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { isFavorite, addFavorite, removeFavorite, settings } = useApp();
+  const { getLyrics } = useLyricsOverrides();
   
   const language = (searchParams.get('lang') as Language) || settings.defaultLanguage;
   const [showLanguages, setShowLanguages] = useState(false);
@@ -33,7 +35,7 @@ export default function HymnDetail() {
   const hymn = hymns[hymnIndex];
 
   const title = useMemo(() => hymn ? getHymnTitle(hymn, language) : '', [hymn, language]);
-  const lyrics = useMemo(() => hymn ? getHymnLyrics(hymn, language) : null, [hymn, language]);
+  const lyrics = useMemo(() => hymn ? getLyrics(hymn, language) : null, [hymn, language, getLyrics]);
   const audioUrl = useMemo(() => hymn ? getHymnAudio(hymn.id) : undefined, [hymn]);
 
   if (!hymn) {
