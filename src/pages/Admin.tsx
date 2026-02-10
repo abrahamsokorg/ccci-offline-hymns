@@ -240,7 +240,7 @@ export default function Admin() {
 
           {/* Hymn List */}
           <div className="space-y-2">
-            {filteredHymns.slice(0, 50).map(hymn => (
+            {filteredHymns.map(hymn => (
               <motion.div
                 key={hymn.id}
                 className="bg-card border border-border rounded-lg p-3"
