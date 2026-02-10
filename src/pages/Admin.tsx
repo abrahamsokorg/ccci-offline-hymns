@@ -241,7 +241,7 @@ export default function Admin() {
             <Input
               placeholder="Search hymns..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
               className="pl-10"
             />
           </div>
