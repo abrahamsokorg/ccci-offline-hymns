@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Upload, Edit, Save, X, Search } from 'lucide-react';
+import { ArrowLeft, Upload, Edit, Save, X, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -25,6 +25,8 @@ export default function Admin() {
   const { toast } = useToast();
   const [lyricsOverrides, setLyricsOverrides] = useLocalStorage<LyricsOverride>('hymn-lyrics-overrides', {});
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 20;
   const [editingHymn, setEditingHymn] = useState<Hymn | null>(null);
   const [editLanguage, setEditLanguage] = useState<Language>('English');
   const [editVerses, setEditVerses] = useState<string[]>([]);
@@ -33,6 +35,12 @@ export default function Admin() {
   const filteredHymns = hymns.filter(hymn => 
     hymn.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     hymn.index.includes(searchQuery)
+  );
+
+  const totalPages = Math.ceil(filteredHymns.length / ITEMS_PER_PAGE);
+  const paginatedHymns = filteredHymns.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
   );
 
   const startEditing = (hymn: Hymn, language: Language) => {
@@ -233,14 +241,38 @@ export default function Admin() {
             <Input
               placeholder="Search hymns..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
               className="pl-10"
             />
           </div>
 
+          {/* Pagination Controls */}
+          <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <span>{filteredHymns.length} hymns found</span>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(p => p - 1)}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <span>Page {currentPage} of {totalPages}</span>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(p => p + 1)}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
           {/* Hymn List */}
           <div className="space-y-2">
-            {filteredHymns.map(hymn => (
+            {paginatedHymns.map(hymn => (
               <motion.div
                 key={hymn.id}
                 className="bg-card border border-border rounded-lg p-3"
