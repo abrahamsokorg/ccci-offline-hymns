@@ -23,6 +23,10 @@ interface LyricsOverride {
 export default function Admin() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
   const [lyricsOverrides, setLyricsOverrides] = useLocalStorage<LyricsOverride>('hymn-lyrics-overrides', {});
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
