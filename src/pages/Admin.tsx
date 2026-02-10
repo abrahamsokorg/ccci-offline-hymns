@@ -25,6 +25,8 @@ export default function Admin() {
   const { toast } = useToast();
   const [lyricsOverrides, setLyricsOverrides] = useLocalStorage<LyricsOverride>('hymn-lyrics-overrides', {});
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 20;
   const [editingHymn, setEditingHymn] = useState<Hymn | null>(null);
   const [editLanguage, setEditLanguage] = useState<Language>('English');
   const [editVerses, setEditVerses] = useState<string[]>([]);
