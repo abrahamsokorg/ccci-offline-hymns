@@ -37,6 +37,12 @@ export default function Admin() {
     hymn.index.includes(searchQuery)
   );
 
+  const totalPages = Math.ceil(filteredHymns.length / ITEMS_PER_PAGE);
+  const paginatedHymns = filteredHymns.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   const startEditing = (hymn: Hymn, language: Language) => {
     setEditingHymn(hymn);
     setEditLanguage(language);
