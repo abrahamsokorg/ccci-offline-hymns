@@ -246,9 +246,33 @@ export default function Admin() {
             />
           </div>
 
+          {/* Pagination Controls */}
+          <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <span>{filteredHymns.length} hymns found</span>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(p => p - 1)}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <span>Page {currentPage} of {totalPages}</span>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(p => p + 1)}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
           {/* Hymn List */}
           <div className="space-y-2">
-            {filteredHymns.map(hymn => (
+            {paginatedHymns.map(hymn => (
               <motion.div
                 key={hymn.id}
                 className="bg-card border border-border rounded-lg p-3"
