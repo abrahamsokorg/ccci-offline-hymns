@@ -31,63 +31,6 @@ export default function Admin() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 20;
-
-  const handleLogin = () => {
-    if (username === 'admin' && password === '1234567890') {
-      setIsAuthenticated(true);
-      setAuthError('');
-    } else {
-      setAuthError('Invalid username or password');
-    }
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <Layout>
-        <div className="min-h-screen bg-background flex items-center justify-center p-4">
-          <motion.div
-            className="bg-card border border-border rounded-xl p-6 w-full max-w-sm space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full gradient-hymnal mb-3">
-                <Edit className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <h2 className="font-serif text-xl font-bold">Lyrics Admin</h2>
-              <p className="text-sm text-muted-foreground mt-1">Enter credentials to continue</p>
-            </div>
-            <div className="space-y-3">
-              <Input
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
-              />
-              <Input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
-              />
-              {authError && (
-                <p className="text-sm text-destructive">{authError}</p>
-              )}
-              <Button onClick={handleLogin} className="w-full gap-2">
-                <Save className="w-4 h-4" />
-                Login
-              </Button>
-            </div>
-            <Button variant="ghost" className="w-full" onClick={() => navigate(-1)}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Go Back
-            </Button>
-          </motion.div>
-        </div>
-      </Layout>
-    );
-  }
   const [editingHymn, setEditingHymn] = useState<Hymn | null>(null);
   const [editLanguage, setEditLanguage] = useState<Language>('English');
   const [editVerses, setEditVerses] = useState<string[]>([]);
